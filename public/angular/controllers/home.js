@@ -2,10 +2,6 @@ app.controller('homeController', ['$scope', '$location', 'dataService', '$http',
   console.log("My stuff");
   $scope.busStopArr = dataService.busStopArr;
 
-
-
-
-
   var myStyle = [
      {
        featureType: "administrative",
@@ -162,6 +158,21 @@ app.controller('homeController', ['$scope', '$location', 'dataService', '$http',
     }
 
     setInterval(updateBusLocations, 5000);
+    $scope.serviceArr = [];
+    for (var i = 0; i < dataService.busStopArr.length; i++) {
+      $scope.selected = dataService.busStopArr[i]["Stops"][0]["BusStopCode"]
+      var url = '/nextbus/' + $scope.selected
+      $http.get(url).then(
+        function successCallback(response) {
+          console.log("Server response", response.data)
+            $scope.serviceArr.push(response.data);
+            console.log($scope.serviceArr);
+          },
+          function errorCallback(response) {
+            console.log("Server error", response.data);
+          }
+        );
+    }
 
 
 }]);

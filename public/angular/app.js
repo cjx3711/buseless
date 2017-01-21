@@ -9,6 +9,11 @@ app.config( function($routeProvider) {
       controller: "busstopController"
   })
 
+  $routeProvider.when("/service/:busstop/:busno", {
+      templateUrl : "templates/bigbutton.html",
+      controller: "bigbuttonController"
+  })
+
   // $routeProvider.when("/directory", {
   //     templateUrl : "templates/directory.html",
   //     controller: "directoryController"

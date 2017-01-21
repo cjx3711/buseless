@@ -50,7 +50,7 @@ app.controller('bigbuttonController', ['$scope', '$location', 'dataService', '$m
         $mdToast.simple()
           .textContent($scope.response)
           .position( $scope.getToastPosition() )
-          .hideDelay(100000)
+          .hideDelay(1000)
       );
     }
 

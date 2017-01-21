@@ -12,12 +12,22 @@ app.controller('busstopController', ['$scope', '$location', 'dataService', '$htt
         $scope.switch = $scope.busStopObject.Stops[1].BusStopCode == $routeParams.busstop;
       }
 
+      $scope.favServices = [];
+      $scope.otherServices = [];
+
     	$scope.selected = $scope.busStopObject.Stops[0]["BusStopCode"]
     	var url = '/nextbus/' + $scope.selected
       $http.get(url).then(
         function successCallback(response) {
           console.log("Server response", response.data)
             $scope.services = response.data;
+            for ( var i = 0 ; i < $scope.services.length; i++ ) {
+              if ( i / $scope.services.length < 0.3 ) {
+                $scope.favServices.push($scope.services[i]);
+              } else {
+                $scope.otherServices.push($scope.services[i]);
+              }
+            }
           },
           function errorCallback(response) {
             console.log("Server error", response.data);

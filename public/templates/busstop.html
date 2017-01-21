@@ -33,8 +33,30 @@
   height: 19px;
   padding: 0 4px;
 }
+
+.busstop-label .stopname.disabled {
+	color: #b0b0b0;
+}
+.busstop-label .stopnumber.disabled {
+  color: white;
+	background: #99dfff;
+}
 md-switch {
 	margin: -2px 5px 0 13px !important;
+}
+.busnumber-button {
+	width: 30%;
+	height: 75px;
+	font-size: 2em;
+	margin: 20px inherit;
+	font-weight: bold;
+	color: #187249 !important;
+}
+.divider {
+	color: white;
+	padding: 10px 50px;
+	background: #2f2f2f;
+	font-size: 1.8em;
 }
 </style>
 <div ng-if="error">
@@ -44,19 +66,19 @@ md-switch {
 	<div id="id-switch" class="flex" ng-if="showSwitch" ng-click="switchStop()">
 		<div class="busstop-label grow flex">
 			<span class="grow"></span>
-			<span class="stopname shrink">
+			<span class="stopname shrink" ng-class="{'disabled': switch}">
 				{{busStopObject.Stops[0].Description}}
 			</span>
-			<span class="stopnumber shrink">
+			<span class="stopnumber shrink" ng-class="{'disabled': switch}">
 				{{busStopObject.Stops[0].BusStopCode}}
 			</span>
 
-		<md-switch class="md-primary" ng-model="switch">
-		</md-switch>
-			<span class="stopname shrink">
+			<md-switch class="md-primary" ng-model="switch">
+			</md-switch>
+			<span class="stopname shrink" ng-class="{'disabled': !switch}">
 				{{busStopObject.Stops[1].Description}}
 			</span>
-			<span class="stopnumber shrink">
+			<span class="stopnumber shrink" ng-class="{'disabled': !switch}">
 				{{busStopObject.Stops[1].BusStopCode}}
 			</span>
 			<span class="grow"></span>
@@ -78,11 +100,24 @@ md-switch {
 
 		</div>
 	</div>
-	<div ng-repeat="service in services">
 
-		<md-list-item class="secondary-button-padding" ng-click="selectService(service.ServiceNo)">
-			<p>{{service.ServiceNo}}</p>
-
-		</md-list-item>
+	<div class="divider">
+		Frequently Used
 	</div>
+	<md-button
+		ng-repeat="service in favServices"
+		class="md-primary busnumber-button"
+		ng-click="selectService(service.ServiceNo)">
+		{{service.ServiceNo}}
+	</md-button>
+	<div class="divider">
+		Other Services
+	</div>
+	<md-button
+	  ng-repeat="service in otherServices"
+		class="md-primary busnumber-button"
+		ng-click="selectService(service.ServiceNo)">
+		{{service.ServiceNo}}
+	</md-button>
+
 </div>

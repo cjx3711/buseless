@@ -6,8 +6,8 @@
 <input type="text" ng-model="bus" placeholder="bus number"/>
 <button ng-click="trackBus()">Track Bus</button> -->
 <div ng-repeat="pair in busStopArr">
-	<md-list-item class="secondary-button-padding busstop-border" ng-click="selectBusStop(pair.Stops)"  >
-		<div style="display: block; width:55%;" >
+	<md-list-item class="secondary-button-padding busstop-border flex" ng-click="selectBusStop(pair.Stops)"  >
+		<div class="grow" >
 				<div ng-repeat="stop in pair.Stops" >
 					<div class="busstop-label-home" style="display: -webkit-inline-box">
 
@@ -18,12 +18,15 @@
 			<p>{{pair.RoadName}}</p>
 
 		</div>
-	  
-	    <div  ng-click="doSecondaryAction($event)" style="width: 45%">
-	    	
-	    </div>
+
+    <div class="busno-container" ng-click="doSecondaryAction($event)">
+    	<div ng-repeat="service in buses"
+					 class="small-busno">
+				{{service}}
+			</div>
+    </div>
 	</md-list-item>
-</div>  
-<!-- 
+</div>
+<!--
 font-family: 'Open Sans', sans-serif;
 font-family: 'Open Sans Condensed', sans-serif; -->

@@ -312,10 +312,26 @@ footer a.nav-bits:hover {
 }
 .busstop-label-home .stopnumber {
   font-family: 'Open Sans', sans-serif;
-  font-size: xx-small;
+  font-size: 13px;
   background-color: #00b0ff;
-  padding: 0 5;
-  font-weight: bolder;
+  padding: 0 5px;
+  font-weight: bold;
   color: white;
   vertical-align: text-bottom;
+}
+
+.busno-container {
+  width: 180px;
+}
+.small-busno {
+  display: inline-block;
+  width: 54px;
+  height: 25px;
+  text-align: center;
+  background: #187249;
+  margin: 3px;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 1.7;
 }

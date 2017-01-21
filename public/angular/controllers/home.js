@@ -99,7 +99,7 @@ app.controller('homeController', ['$scope', '$location', 'dataService', '$http',
     }
     $scope.selectBusStop = function(stopsArr) {
       dataService.selectedStops = stopsArr;
-      window.location.href = "/#/busstop"
+      window.location.href = "/#/busstop/" + stopsArr[0].BusStopCode;
 
     };
 
@@ -157,7 +157,7 @@ app.controller('homeController', ['$scope', '$location', 'dataService', '$http',
       });
     }
 
-    setInterval(updateBusLocations, 5000);
+    setInterval(updateBusLocations, 15000);
     $scope.serviceArr = [];
     for (var i = 0; i < dataService.busStopArr.length; i++) {
       $scope.selected = dataService.busStopArr[i]["Stops"][0]["BusStopCode"]
@@ -173,6 +173,8 @@ app.controller('homeController', ['$scope', '$location', 'dataService', '$http',
           }
         );
     }
+
+    $scope.buses = ['123', '312', '322', '132'];
 
 
 }]);

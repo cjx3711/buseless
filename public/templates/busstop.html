@@ -1,9 +1,88 @@
-<div id="id-switch" ng-if="showSwitch">
-	meow
+<style>
+.shrink {
+	flex-shrink: 1;
+}
+.grow {
+	flex-grow: 1;
+}
+.flex {
+	display: flex;
+}
+#id-switch {
+	cursor: pointer;
+}
+.busstop-label {
+	margin-top: 20px;
+	height: 20px;
+	margin-bottom:20px;
+}
+.busstop-label .stopname {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 17px;
+	white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.busstop-label .stopnumber {
+	font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  color: white;
+  background: #00b0ff;
+  font-weight: bold;
+  margin-left: 5px;
+  margin-top: 2px;
+  height: 19px;
+  padding: 0 4px;
+}
+md-switch {
+	margin: -2px 5px 0 13px !important;
+}
+</style>
+<div ng-if="error">
+	<h1>404</h1>
 </div>
-<div ng-repeat="service in services">
-	<md-list-item class="secondary-button-padding" ng-click="selectService(service.ServiceNo)">
-	    <p>{{service.ServiceNo}}</p>
-	    
-	  </md-list-item>
-</div>  
+<div ng-if="!error">
+	<div id="id-switch" class="flex" ng-if="showSwitch" ng-click="switchStop()">
+		<div class="busstop-label grow flex">
+			<span class="grow"></span>
+			<span class="stopname shrink">
+				{{busStopObject.Stops[0].Description}}
+			</span>
+			<span class="stopnumber shrink">
+				{{busStopObject.Stops[0].BusStopCode}}
+			</span>
+
+		<md-switch class="md-primary" ng-model="switch">
+		</md-switch>
+			<span class="stopname shrink">
+				{{busStopObject.Stops[1].Description}}
+			</span>
+			<span class="stopnumber shrink">
+				{{busStopObject.Stops[1].BusStopCode}}
+			</span>
+			<span class="grow"></span>
+
+		</div>
+	</div>
+
+	<div id="busstop-name" ng-if="!showSwitch">
+		<div class="busstop-label flex">
+			<span class="grow"></span>
+
+			<span class="stopname shrink">
+				{{busStopObject.Stops[0].Description}}
+			</span>
+			<span class="stopnumber shrink">
+				{{busStopObject.Stops[0].BusStopCode}}
+			</span>
+			<span class="grow"></span>
+
+		</div>
+	</div>
+	<div ng-repeat="service in services">
+
+		<md-list-item class="secondary-button-padding" ng-click="selectService(service.ServiceNo)">
+			<p>{{service.ServiceNo}}</p>
+
+		</md-list-item>
+	</div>
+</div>

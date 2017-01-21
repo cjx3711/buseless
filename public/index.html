@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>BUSELESS</title>
+
+    <link rel="stylesheet" href="lib/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/theme.css">
+    <link rel="stylesheet" href="stylesheets/animations.css">
+    <!-- <script src="https://use.fontawesome.com/ef6650d4a1.js"></script> -->
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+
+  <body ng-app="BuselessApp" class="bg">
+
+    <ng-view></ng-view>
+
+    <div class="footer-pad">
+    </div>
+   
+    <!-- <footer> -->
+      <!-- <a class="nav-bits" href="/#/">Home</a> -->
+ 
+      <!-- <a href="/#/"><img class="corner-logo" src="../assets/logo.png"/></a> -->
+    <!-- </footer> -->
+
+    <!-- <script src="https://cdn.jsdelivr.net/g/lodash@4.16.1(lodash.min.js+lodash.core.min.js)"></script> -->
+    <script src="javascripts/jquery-3.1.0.min.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+    <script src="javascripts/angular.min.js"></script>
+    <script src="javascripts/angular-route.js"></script>
+    <script src="javascripts/three.min.js"></script>
+    <script src="javascripts/angular-animate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+
+
+    <script>
+      var app = angular.module('BuselessApp', ['ngRoute']);
+    </script>
+    <script src="angular/app.js"></script>
+    <script src="angular/service/data.js"></script>
+    
+    <script src="angular/controllers/home.js"></script>
+
+
+    <!-- <script src="js/service/data.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/directives/sidebar.js"></script> -->
+  </body>
+
+</html>

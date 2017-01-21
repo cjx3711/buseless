@@ -108,6 +108,20 @@ app.controller('homeController', ['$scope', '$location', 'dataService', '$http',
       console.log($scope.busstop);
       console.log($scope.bus);
     }
+    $scope.doPrimaryAction = function() {
+      console.log("primary");
+    };
+
+    var url = '/nextbus/' + $scope.busstop
+    $http.get(url).then(
+        function successCallback(response) {
+          console.log("Server response", response.data)
+          $scope.services = response.data;
+        },
+        function errorCallback(response) {
+          console.log("Server error", response.data);
+        }
+      );
 
 
     function updateBusLocations() {

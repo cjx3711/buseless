@@ -27,3 +27,16 @@ This README would normally document whatever steps are necessary to get your app
 
 * Repo owner or admin
 * Other community or team contact
+
+
+### Configuration to create ###
+
+
+To start
+
+1. Clone the repo
+2. `npm install`
+3.  Run the app
+    i. Mac: `DEBUG=myapp:* nodemon npm start`
+    ii. Windows `set DEBUG=myapp:* & nodemon npm start`
+

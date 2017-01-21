@@ -29,17 +29,17 @@ router.get('/:busstopid/:serviceno', function(req, res, next) {
       if (!error && response.statusCode == 200) {
           var services = JSON.parse(body)["Services"]
           var len = services.length;
-          var result = {};
-          var i = 0;
-          // while (services[i]["ServiceNo"] == serviceno) {
-
-          // }
-          //  (var i = 0; i < len; i++) {
-          //   if () {
-          //     result = services[i];
-          //   }
-          // }
-          res.json(result);
+          var result = _.find(services, function(obj) {
+            return obj["ServiceNo"] === serviceno;
+          });
+          
+          console.log(result);
+          console.log(serviceno);
+          if (result) {
+            res.json(result);
+          } else {
+            res.json({message: "Service number not found at bus stop"});
+          }
       } else {
       	  res.json({message: "ERROR connecting to LTA"});
       }

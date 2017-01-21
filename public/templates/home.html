@@ -1,16 +1,29 @@
+
+
 <div id="map"></div>
 
 <!-- <input type="text" ng-model="busstop" placeholder="bus stop number"/>
 <input type="text" ng-model="bus" placeholder="bus number"/>
 <button ng-click="trackBus()">Track Bus</button> -->
 <div ng-repeat="pair in busStopArr">
-	<md-list-item class="secondary-button-padding" ng-click="selectBusStop(pair.Stops)">
-		<div ng-repeat="stop in pair.Stops">
-			<p>{{stop.Description}}</p><p>{{stop.BusStopCode}}</p>
+	<md-list-item class="secondary-button-padding busstop-border" ng-click="selectBusStop(pair.Stops)"  >
+		<div style="display: block; width:55%;" >
+				<div ng-repeat="stop in pair.Stops" >
+					<div class="busstop-label-home" style="display: -webkit-inline-box">
+
+						<span class="stopname">{{stop.Description}}</span>
+						<span class="stopnumber">{{stop.BusStopCode}}</span>
+					</div>
+				</div>
+			<p>{{pair.RoadName}}</p>
+
 		</div>
-		<p>{{pair.RoadName}}</p>
 	  
-	    <md-button class="md-secondary" ng-click="doSecondaryAction($event)">More Info</md-button>
+	    <div  ng-click="doSecondaryAction($event)" style="width: 45%">
+	    	
+	    </div>
 	</md-list-item>
 </div>  
-
+<!-- 
+font-family: 'Open Sans', sans-serif;
+font-family: 'Open Sans Condensed', sans-serif; -->

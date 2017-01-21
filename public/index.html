@@ -21,6 +21,20 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 50%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   </head>
 
 
@@ -30,10 +44,10 @@
 
     <div class="footer-pad">
     </div>
-   
+
     <!-- <footer> -->
       <!-- <a class="nav-bits" href="/#/">Home</a> -->
- 
+
       <!-- <a href="/#/"><img class="corner-logo" src="../assets/logo.png"/></a> -->
     <!-- </footer> -->
 
@@ -45,21 +59,29 @@
     <script src="javascripts/angular-animate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
- <!--    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
- -->
-    <!-- Angular Material Library -->
-<!--     <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
- -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3JYHJ2xZ9jX4dfB-s1oQwE6RJMeDMUJA&callback=initMap"
+    async defer></script>
 
     <script>
-      var app = angular.module('BuselessApp', ['ngRoute', 'ngMaterial']);
+      window.mapsLoaded = false;
+      var app = angular.module('BuselessApp', ['ngRoute']);
+      function initMap() {
+        console.log("Finished loading");
+        window.mapsLoaded = true;
+        if (window.initMaps) {
+          window.initMaps();
+        }
+      }
+
     </script>
     <script src="angular/app.js"></script>
     <script src="angular/service/data.js"></script>
 
     <script src="angular/controllers/home.js"></script>
+    <script src="angular/controllers/other.js"></script>
 
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3JYHJ2xZ9jX4dfB-s1oQwE6RJMeDMUJA&callback=initMap"
+    async defer></script> -->
 
     <!-- <script src="js/service/data.js"></script>
     <script src="js/scripts.js"></script>

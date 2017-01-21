@@ -4,6 +4,11 @@ app.config( function($routeProvider) {
       controller: "homeController"
   })
 
+  $routeProvider.when("/other", {
+      templateUrl : "templates/other.html",
+      controller: "otherController"
+  })
+
   // $routeProvider.when("/directory", {
   //     templateUrl : "templates/directory.html",
   //     controller: "directoryController"
@@ -18,5 +23,3 @@ app.config(function($provide) {
         return $delegate;
     });
 });
-
-

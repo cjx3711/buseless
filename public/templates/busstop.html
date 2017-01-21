@@ -1,0 +1,9 @@
+<div id="id-switch" ng-if="showSwitch">
+	meow
+</div>
+<div ng-repeat="service in services">
+	<md-list-item class="secondary-button-padding" ng-click="selectService(service.ServiceNo)">
+	    <p>{{service.ServiceNo}}</p>
+	    
+	  </md-list-item>
+</div>  

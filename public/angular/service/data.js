@@ -12,6 +12,7 @@ app.service('dataService', [ '$http', function($http) {
     //   }
     // );
   // }
+  // this.selectedStops = [];
 
 
 }]);

@@ -4,9 +4,9 @@ app.config( function($routeProvider) {
       controller: "homeController"
   })
 
-  $routeProvider.when("/other", {
-      templateUrl : "templates/other.html",
-      controller: "otherController"
+  $routeProvider.when("/busstop", {
+      templateUrl : "templates/busstop.html",
+      controller: "busstopController"
   })
 
   // $routeProvider.when("/directory", {

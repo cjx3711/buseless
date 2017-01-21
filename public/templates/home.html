@@ -1,12 +1,16 @@
 <div id="map"></div>
 
-<input type="text" ng-model="busstop" placeholder="bus stop number"/>
+<!-- <input type="text" ng-model="busstop" placeholder="bus stop number"/>
 <input type="text" ng-model="bus" placeholder="bus number"/>
-<button ng-click="trackBus()">Track Bus</button>
-<div ng-repeat="service in services">
-	<md-list-item class="secondary-button-padding" ng-click="doPrimaryAction()">
-	    <p>{{service.ServiceNo}}</p>
-	    
-	  </md-list-item>
+<button ng-click="trackBus()">Track Bus</button> -->
+<div ng-repeat="pair in busStopArr">
+	<md-list-item class="secondary-button-padding" ng-click="selectBusStop(pair.Stops)">
+		<div ng-repeat="stop in pair.Stops">
+			<p>{{stop.Description}}</p><p>{{stop.BusStopCode}}</p>
+		</div>
+		<p>{{pair.RoadName}}</p>
+	  
+	    <md-button class="md-secondary" ng-click="doSecondaryAction($event)">More Info</md-button>
+	</md-list-item>
 </div>  
 

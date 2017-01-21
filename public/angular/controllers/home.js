@@ -1,4 +1,4 @@
-app.controller('homeController', ['$scope', '$location', 'dataService', function ($scope, $location, dataService) {
+app.controller('homeController', ['$scope', '$location', 'dataService', '$http', function ($scope, $location, dataService, $http) {
   console.log("My stuff");
   var myStyle = [
      {
@@ -24,8 +24,9 @@ app.controller('homeController', ['$scope', '$location', 'dataService', function
 
     var map;
     var locationCoords;
-    var marker;
+
     var markerPos = {lat: 1.3062, lng: 103.7732};
+    var markers = [];
     navigator.geolocation.getCurrentPosition(function(location) {
       console.log(location);
       console.log(location.coords.latitude);
@@ -37,6 +38,11 @@ app.controller('homeController', ['$scope', '$location', 'dataService', function
     }, function() {
       alert("Sorry, no position available");
     });
+
+    var iconConfig = {
+      url: 'assets/bus.png',
+      labelOrigin: new google.maps.Point(16, 12)
+    }
 
     window.initMaps = function() {
       if ( !window.mapsLoaded ) {
@@ -52,19 +58,47 @@ app.controller('homeController', ['$scope', '$location', 'dataService', function
       });
 
       map.mapTypes.set('mystyle', new google.maps.StyledMapType(myStyle, { name: 'My Style' }));
-      marker = new google.maps.Marker({position: {lat: 1.3062, lng: 103.7732}, map: map, icon: 'assets/bus.png'});
+      window.marker = new google.maps.Marker({position: {lat: 1.3062, lng: 103.7732}, map: map, icon: iconConfig});
+      window.marker.setLabel('121')
     }
     window.initMaps();
+
 
     window.moveMarker = function(lat, lng) {
       markerPos.lat += lat;
       markerPos.lng += lng;
-      marker.setPosition(markerPos);
+      window.marker.setPosition(markerPos);
     }
     window.setMarker = function(lat, lng) {
       markerPos.lat = lat;
       markerPos.lng = lng;
-      marker.setPosition(markerPos);
+      window.marker.setPosition(markerPos);
+    }
+
+    function updateMarker(lat, lng, no, i) {
+      if ( i >= markers.length ) {
+        addMarker(lat, lng, no);
+      } else {
+        newMarker.setLabel(no);
+        markers[i].setPosition({lat: lat, lng: lng});
+        markers[i].setMap(map);
+      }
+    }
+    function addMarker(lat, lng, no) {
+      var newMarker = new google.maps.Marker({position: {lat: lat, lng: lng}, map: map, icon: iconConfig});
+      newMarker.setLabel(no);
+      markers.push(newMarker);
+    }
+    function deleteMarkers() {
+      markers.forEach( function(m) {
+        m.setMap(null);
+      });
+    }
+
+    function deleteMarkersAfter(n) {
+      for ( var i = n; i < markers.length; i++ ) {
+        markers[i].setMap(null);
+      }
     }
 
     $scope.busstop = "17099";
@@ -74,4 +108,51 @@ app.controller('homeController', ['$scope', '$location', 'dataService', function
       console.log($scope.busstop);
       console.log($scope.bus);
     }
+
+
+    function updateBusLocations() {
+      var locations = [];
+      $http({
+        method: 'GET',
+        url: '/nextbus/17099'
+      }).then(function successCallback(response) {
+        // this callback will be called asynchronously
+        // when the response is available
+        console.log(response);
+
+        response.data.forEach( function(busService) {
+          if ( busService.NextBus.Latitude && busService.NextBus.Longitude ) {
+            locations.push({
+              num: busService.ServiceNo,
+              lat: parseFloat(busService.NextBus.Latitude),
+              lng: parseFloat(busService.NextBus.Longitude)
+            })
+          }
+          if ( busService.SubsequentBus.Latitude && busService.SubsequentBus.Longitude ) {
+            locations.push({
+              num: busService.ServiceNo,
+              lat: parseFloat(busService.SubsequentBus.Latitude),
+              lng: parseFloat(busService.SubsequentBus.Longitude)
+            })
+          }
+        });
+
+        for ( var i = 0; i < locations.length; i++ ) {
+          updateMarker(locations[i].lat, locations[i].lng, locations[i].num, i);
+        }
+        deleteMarkersAfter(i+1);
+
+
+
+        console.log(locations);
+      }, function errorCallback(response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log("error", response);
+      });
+    }
+
+      setInterval(updateBusLocations, 5000);
+
+
 }]);

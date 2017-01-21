@@ -35,7 +35,7 @@ app.controller('homeController', ['$scope', '$location', 'dataService', '$http',
       console.log(location.coords.accuracy);
       locationCoords = location.coords;
       map.setCenter({lat: locationCoords.latitude, lng: locationCoords.longitude});
-      map.setZoom(17);
+      map.setZoom(14);
     }, function() {
       alert("Sorry, no position available");
     });
@@ -53,8 +53,8 @@ app.controller('homeController', ['$scope', '$location', 'dataService', '$http',
         mapTypeControlOptions: {
           mapTypeIds: ['mystyle', google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.TERRAIN]
         },
-        center: {lat: 1.36, lng: 103.82},
-        zoom: 11,
+        center: {lat: 1.3065978, lng: 103.7733377}, //{lat: 1.36, lng: 103.82},
+        zoom: 14,
         mapTypeId: 'mystyle'
       });
 
@@ -99,7 +99,7 @@ app.controller('homeController', ['$scope', '$location', 'dataService', '$http',
     }
     $scope.selectBusStop = function(stopsArr) {
       dataService.selectedStops = stopsArr;
-      window.location.href = "/#/busstop"
+      window.location.href = "/#/busstop/" + stopsArr[0].BusStopCode;
 
     };
 

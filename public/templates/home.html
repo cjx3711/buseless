@@ -1,31 +1,49 @@
+<style>
+	#map {
+		height: 50%;
+	}
+	.home-container {
+		flex-direction: column;
+		height: 100%;
+	}
+	.stop-container {
+		overflow-y: auto;
+	}
+</style>
+<div class="flex home-container">
 
+	<div id="map"></div>
+	<div class="stop-container grow">
+		<!-- <input type="text" ng-model="busstop" placeholder="bus stop number"/>
+		<input type="text" ng-model="bus" placeholder="bus number"/>
+		<button ng-click="trackBus()">Track Bus</button> -->
+		<div ng-repeat="pair in busStopArr">
+			<md-list-item class="secondary-button-padding busstop-border flex" ng-click="selectBusStop(pair.Stops)"  >
+				<div class="grow" >
+						<div ng-repeat="stop in pair.Stops" >
+							<div class="busstop-label-home" style="display: -webkit-inline-box">
 
-<div id="map"></div>
+								<span class="stopname">{{stop.Description}}</span>
+								<span class="stopnumber">{{stop.BusStopCode}}</span>
+							</div>
+						</div>
+					<p>{{pair.RoadName}}</p>
 
-<!-- <input type="text" ng-model="busstop" placeholder="bus stop number"/>
-<input type="text" ng-model="bus" placeholder="bus number"/>
-<button ng-click="trackBus()">Track Bus</button> -->
-<div ng-repeat="pair in busStopArr">
-	<md-list-item class="secondary-button-padding busstop-border" ng-click="selectBusStop(pair.Stops)"  >
-		<div style="display: block; width:55%;" >
-				<div ng-repeat="stop in pair.Stops" >
-					<div class="busstop-label-home" style="display: -webkit-inline-box">
-
-						<span class="stopname">{{stop.Description}}</span>
-						<span class="stopnumber">{{stop.BusStopCode}}</span>
-					</div>
 				</div>
-			<p>{{pair.RoadName}}</p>
 
+		    <div class="busno-container">
+		    	<div ng-repeat="service in pair.ServiceArr | limitTo:8"
+							 class="small-busno">
+						{{service}}
+					</div>
+		    	<div ng-if="pair.ServiceArr.length > 8" class="small-busno">...
+					</div>
+		    </div>
+
+			</md-list-item>
 		</div>
-	  
-	    <div  ng-click="doSecondaryAction($event)" style="width: 45%">
-	    	<div ng-repeat="service in pair.ServiceArr">
-    			<span>{{service}}</span>
-	    	</div>
-	    </div>
-	</md-list-item>
-</div>  
-<!-- 
+	</div>
+</div>
+<!--
 font-family: 'Open Sans', sans-serif;
 font-family: 'Open Sans Condensed', sans-serif; -->

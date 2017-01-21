@@ -9,7 +9,7 @@ app.config( function($routeProvider) {
       controller: "otherController"
   })
 
-  $routeProvider.when("/service/:id", {
+  $routeProvider.when("/service/:busstop/:busno", {
       templateUrl : "templates/bigbutton.html",
       controller: "bigbuttonController"
   })

@@ -5,16 +5,16 @@ var _ = require('lodash');
 
 /* GET busstopid and filter by service no */
 router.get('/:busstopid/:serviceno', function(req, res, next) {
-   
+
   var busstopid = req.params['busstopid'];
   var serviceno = req.params['serviceno'];
-  
+
   // Set the headers
   var headers = {
       'AccountKey':       '5bdVaC1QQFeNTvj8xjGOuA==',
       'Content-Type':     'application/json'
   }
-  
+
   var url = 'http://datamall2.mytransport.sg/ltaodataservice/BusArrival?BusStopID=' + busstopid;
 
   // Configure the request
@@ -23,7 +23,7 @@ router.get('/:busstopid/:serviceno', function(req, res, next) {
       method: 'GET',
       headers: headers
   }
-  
+
   // Start the request
   request(options, function (error, response, body) {
       if (!error && response.statusCode == 200) {
@@ -32,7 +32,7 @@ router.get('/:busstopid/:serviceno', function(req, res, next) {
           var result = _.find(services, function(obj) {
             return obj["ServiceNo"] === serviceno;
           });
-          
+
           console.log(result);
           console.log(serviceno);
           if (result) {
@@ -48,15 +48,15 @@ router.get('/:busstopid/:serviceno', function(req, res, next) {
 
 // GET bus stop id
 router.get('/:busstopid', function(req, res, next) {
-   
+
   var busstopid = req.params['busstopid'];
-  
+
   // Set the headers
   var headers = {
       'AccountKey':       '5bdVaC1QQFeNTvj8xjGOuA==',
       'Content-Type':     'application/json'
   }
-  
+
   var url = 'http://datamall2.mytransport.sg/ltaodataservice/BusArrival?BusStopID=' + busstopid;
 
   // Configure the request
@@ -65,7 +65,7 @@ router.get('/:busstopid', function(req, res, next) {
       method: 'GET',
       headers: headers
   }
-  
+
   // Start the request
   request(options, function (error, response, body) {
       if (!error && response.statusCode == 200) {
@@ -78,8 +78,3 @@ router.get('/:busstopid', function(req, res, next) {
 });
 
 module.exports = router;
-
-
-
-
-

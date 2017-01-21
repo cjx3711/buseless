@@ -79,7 +79,7 @@ app.controller('homeController', ['$scope', '$location', 'dataService', '$http',
       if ( i >= markers.length ) {
         addMarker(lat, lng, no);
       } else {
-        newMarker.setLabel(no);
+        markers[i].setLabel(no);
         markers[i].setPosition({lat: lat, lng: lng});
         markers[i].setMap(map);
       }

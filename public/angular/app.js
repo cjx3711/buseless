@@ -4,7 +4,7 @@ app.config( function($routeProvider) {
       controller: "homeController"
   })
 
-  $routeProvider.when("/busstop", {
+  $routeProvider.when("/busstop/:busstop", {
       templateUrl : "templates/busstop.html",
       controller: "busstopController"
   })

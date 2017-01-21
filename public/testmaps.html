@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+    var myStyle = [
+       {
+         featureType: "administrative",
+         elementType: "labels",
+         stylers: [
+           { visibility: "off" }
+         ]
+       },{
+         featureType: "poi",
+         elementType: "labels",
+         stylers: [
+           { visibility: "off" }
+         ]
+       },{
+         featureType: "water",
+         elementType: "labels",
+         stylers: [
+           { visibility: "off" }
+         ]
+       }
+     ];
+
+      var map;
+      var locationCoords;
+      var marker;
+      var markerPos = {lat: 1.3062, lng: 103.7732};
+      navigator.geolocation.getCurrentPosition(function(location) {
+        console.log(location);
+        console.log(location.coords.latitude);
+        console.log(location.coords.longitude);
+        console.log(location.coords.accuracy);
+        locationCoords = location.coords;
+        map.setCenter({lat: locationCoords.latitude, lng: locationCoords.longitude});
+        map.setZoom(17);
+      }, function() {
+        alert("Sorry, no position available");
+      });
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          mapTypeControlOptions: {
+            mapTypeIds: ['mystyle', google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.TERRAIN]
+          },
+          center: {lat: 1.36, lng: 103.82},
+          zoom: 11,
+          mapTypeId: 'mystyle'
+        });
+
+        map.mapTypes.set('mystyle', new google.maps.StyledMapType(myStyle, { name: 'My Style' }));
+        marker = new google.maps.Marker({position: {lat: 1.3062, lng: 103.7732}, map: map, icon: 'bus.png'});
+      }
+
+      function moveMarker(lat, lng) {
+        markerPos.lat += lat;
+        markerPos.lng += lng;
+        marker.setPosition(markerPos);
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3JYHJ2xZ9jX4dfB-s1oQwE6RJMeDMUJA&callback=initMap"
+    async defer></script>
+  </body>
+</html>

@@ -292,3 +292,57 @@ footer a.nav-bits:hover {
 	right: 20px;
 	bottom: 20px;
 }
+
+.busstop-border {
+  border-bottom-color: lightgray;
+  border-bottom-style: solid;
+  border-bottom-width: medium;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.busstop-label-home {
+    margin-bottom:-20px;
+}
+.busstop-label-home .stopname {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: x-large;
+    white-space: nowrap;
+     text-overflow: ellipsis;
+}
+.busstop-label-home .stopnumber {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  background-color: #00b0ff;
+  padding: 0 5px;
+  font-weight: bold;
+  color: white;
+  vertical-align: top;
+  margin-left: 5px;
+}
+
+.busno-container {
+  width: 180px;
+}
+.small-busno {
+  display: inline-block;
+  width: 54px;
+  height: 25px;
+  text-align: center;
+  background: #187249;
+  margin: 3px;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.more-buses {
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 1.7;
+}

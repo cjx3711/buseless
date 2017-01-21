@@ -36,7 +36,8 @@ app.service('dataService', [ '$http', function($http) {
           "Latitude": 1.30777929773028,
           "Longitude": 103.76988582423061
         }
-      ]
+      ], 
+      "ServiceArr": []
     },
     {
       "RoadName": "Clementi Rd",
@@ -55,7 +56,8 @@ app.service('dataService', [ '$http', function($http) {
           "Latitude": 1.30798165844336,
           "Longitude": 103.77170498369206
         }
-      ]
+      ], 
+      "ServiceArr": []
     },
     {
       "RoadName": "C'wealth Ave West",
@@ -74,7 +76,8 @@ app.service('dataService', [ '$http', function($http) {
           "Latitude": 1.31167951129602,
           "Longitude": 103.77868390552867
         }
-      ]
+      ], 
+      "ServiceArr": []
     },
     {
       "RoadName": "C'wealth Ave West",
@@ -93,7 +96,8 @@ app.service('dataService', [ '$http', function($http) {
           "Latitude": 1.31266302174215,
           "Longitude": 103.77479215922537
         }
-      ]
+      ], 
+      "ServiceArr": []
     },
     {
       "RoadName": "C'wealth Ave West",
@@ -112,9 +116,36 @@ app.service('dataService', [ '$http', function($http) {
           "Latitude": 1.30894500001531,
           "Longitude": 103.7727225000061
         }
-      ]
+      ], 
+      "ServiceArr": []
     }
   ];
+
+  var service = this;
+  for (var i = 0; i < service.busStopArr.length; i++) {
+
+      var num = service.busStopArr[i]["Stops"][0]["BusStopCode"];
+      var url = '/nextbus/' + num;
+      $http.get(url).then(
+        (function(index) {
+            return function(response) {
+                console.log("Server response", response.data)
+                var data = response.data;
+                console.log(data)
+                var singleServiceArr = [];
+                for (var j = 0; j < data.length; j++) {
+                  singleServiceArr.push(data[j]["ServiceNo"]);
+                }
+                console.log(service.busStopArr, index);
+                service.busStopArr[index]["ServiceArr"] = singleServiceArr;
+            }
+        })(i),
+        function errorCallback(response) {
+          console.log("Server error", response.data);
+        }
+        );
+
+    }
 
 
 

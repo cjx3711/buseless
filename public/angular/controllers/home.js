@@ -25,7 +25,6 @@ app.controller('homeController', ['$scope', '$location', 'dataService', '$http',
     var map;
     var locationCoords;
 
-    var markerPos = {lat: 1.3062, lng: 103.7732};
     var markers = [];
     navigator.geolocation.getCurrentPosition(function(location) {
       console.log(location);
@@ -63,17 +62,6 @@ app.controller('homeController', ['$scope', '$location', 'dataService', '$http',
     }
     window.initMaps();
 
-
-    window.moveMarker = function(lat, lng) {
-      markerPos.lat += lat;
-      markerPos.lng += lng;
-      window.marker.setPosition(markerPos);
-    }
-    window.setMarker = function(lat, lng) {
-      markerPos.lat = lat;
-      markerPos.lng = lng;
-      window.marker.setPosition(markerPos);
-    }
 
     function updateMarker(lat, lng, no, i) {
       if ( i >= markers.length ) {

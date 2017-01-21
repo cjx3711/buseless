@@ -79,11 +79,15 @@ app.controller('bigbuttonController', ['$scope', '$location', 'dataService', '$m
     if ($scope.clicks < 0) {
       $scope.clicks = 0;
     }
+
+    if ($scope.clicks > 13) {
+      $scope.clicks = 13;
+    }
     $scope.setUncleImage();
   }, 1000);
 
   $scope.setUncleImage = function() {
-    if ( $scope.clicks > 5 ) {
+    if ( $scope.clicks > 6 ) {
       console.log("Clicks", $scope.clicks);
       if ( $scope.clicks % 2 == 0) {
         console.log("0");
@@ -94,8 +98,8 @@ app.controller('bigbuttonController', ['$scope', '$location', 'dataService', '$m
         $scope.uncleSrc = 'assets/uncle-pressured2.png';
         $scope.$apply();
       }
-    } else if ( $scope.clicks > 3 ) {
-      $scope.uncleSrc = 'assets/uncle-pressured.png';
+    } else if ( $scope.clicks > 1 ) {
+      $scope.uncleSrc = 'assets/uncle-trying.png';
       $scope.$apply();
     } else {
       // Happy uncle

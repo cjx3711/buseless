@@ -56,14 +56,22 @@ app.controller('homeController', ['$scope', '$location', 'dataService', function
     }
     window.initMaps();
 
-    function moveMarker(lat, lng) {
+    window.moveMarker = function(lat, lng) {
       markerPos.lat += lat;
       markerPos.lng += lng;
       marker.setPosition(markerPos);
     }
-    function setMarker(lat, lng) {
+    window.setMarker = function(lat, lng) {
       markerPos.lat = lat;
       markerPos.lng = lng;
       marker.setPosition(markerPos);
+    }
+
+    $scope.busstop = "17099";
+    $scope.bus = "151";
+    $scope.trackBus = function() {
+      console.log("Tracking bus");
+      console.log($scope.busstop);
+      console.log($scope.bus);
     }
 }]);

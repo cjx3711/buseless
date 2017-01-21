@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var test = require('./routes/test');
 var bus = require('./routes/bus');
 var nextbus = require('./routes/nextbus');
 var nearbystops = require('./routes/nearbystops');
@@ -34,6 +35,7 @@ app.use('/users', users);
 app.use('/bus', bus);
 app.use('/nextbus', nextbus);
 app.use('/nearbystops', nearbystops);
+app.use('/test', test);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

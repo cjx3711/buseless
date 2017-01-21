@@ -1,13 +1,44 @@
 <style>
-.bushere {
-  width:100%;
-  height:200px;
-}
+  .busno {
+    text-align: center;
+    font-size: 5em;
+    padding: 40px 0;
+  }
+  .bushere {
+    width:100%;
+    height:200px;
+    font-size: 2em;
+  }
+  .md-toast-content .md-toast-text {
+    font-size: 3em;
+    text-align: center;
+  }
+  .uncle {
+    height:1000px;
+    flex-grow: 1;
+  }
+  md-toast {
+    bottom: auto;
+  }
+  md-toast.md-default-theme .md-toast-content, md-toast .md-toast-content {
+    padding: 30px 0;
+  }
+  .container {
+    height:100%;
+    display:flex;
+    flex-direction: column;
+  }
 </style>
-<md-content>
-
+<md-content class="container">
   <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-    <md-button class="bushere" md-no-ink class="md-primary">Is my bus here yet?</md-button>
+    <h1 class="busno">{{service}}</h1>
+  </section>
+  <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+    <div class="uncle">
+    </div>
+  </section>
+  <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+    <md-button class="bushere" ng-click="isBusHere()" class="md-raised md-primary">Is my bus here yet?</md-button>
   </section>
 
 </md-content>

@@ -1,31 +1,45 @@
+<style>
+	#map {
+		height: 50%;
+	}
+	.home-container {
+		flex-direction: column;
+		height: 100%;
+	}
+	.stop-container {
+		overflow-y: auto;
+	}
+</style>
+<div class="flex home-container">
 
+	<div id="map"></div>
+	<div class="stop-container grow">
+		<!-- <input type="text" ng-model="busstop" placeholder="bus stop number"/>
+		<input type="text" ng-model="bus" placeholder="bus number"/>
+		<button ng-click="trackBus()">Track Bus</button> -->
+		<div ng-repeat="pair in busStopArr">
+			<md-list-item class="secondary-button-padding busstop-border flex" ng-click="selectBusStop(pair.Stops)"  >
+				<div class="grow" >
+						<div ng-repeat="stop in pair.Stops" >
+							<div class="busstop-label-home" style="display: -webkit-inline-box">
 
-<div id="map"></div>
+								<span class="stopname">{{stop.Description}}</span>
+								<span class="stopnumber">{{stop.BusStopCode}}</span>
+							</div>
+						</div>
+					<p>{{pair.RoadName}}</p>
 
-<!-- <input type="text" ng-model="busstop" placeholder="bus stop number"/>
-<input type="text" ng-model="bus" placeholder="bus number"/>
-<button ng-click="trackBus()">Track Bus</button> -->
-<div ng-repeat="pair in busStopArr">
-	<md-list-item class="secondary-button-padding busstop-border flex" ng-click="selectBusStop(pair.Stops)"  >
-		<div class="grow" >
-				<div ng-repeat="stop in pair.Stops" >
-					<div class="busstop-label-home" style="display: -webkit-inline-box">
-
-						<span class="stopname">{{stop.Description}}</span>
-						<span class="stopnumber">{{stop.BusStopCode}}</span>
-					</div>
 				</div>
-			<p>{{pair.RoadName}}</p>
 
+		    <div class="busno-container" ng-click="doSecondaryAction($event)">
+		    	<div ng-repeat="service in buses"
+							 class="small-busno">
+						{{service}}
+					</div>
+		    </div>
+			</md-list-item>
 		</div>
-
-    <div class="busno-container" ng-click="doSecondaryAction($event)">
-    	<div ng-repeat="service in buses"
-					 class="small-busno">
-				{{service}}
-			</div>
-    </div>
-	</md-list-item>
+	</div>
 </div>
 <!--
 font-family: 'Open Sans', sans-serif;

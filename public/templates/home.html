@@ -20,7 +20,9 @@
 		</div>
 	  
 	    <div  ng-click="doSecondaryAction($event)" style="width: 45%">
-	    	
+	    	<div ng-repeat="service in pair.ServiceArr">
+    			<span>{{service}}</span>
+	    	</div>
 	    </div>
 	</md-list-item>
 </div>  

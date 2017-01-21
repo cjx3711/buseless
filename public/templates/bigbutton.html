@@ -1,8 +1,8 @@
 <style>
-  .busno {
+  h1.busno {
     text-align: center;
-    font-size: 5em;
-    padding: 40px 0;
+    font-size: 4.5em;
+    padding: 20px 0;
   }
   .bushere {
     width:100%;
@@ -14,8 +14,14 @@
     text-align: center;
   }
   .uncle {
-    height:1000px;
     flex-grow: 1;
+    position:relative;
+  }
+  .uncle-container {
+
+  }
+  .uncle-base {
+    max-height:300px;
   }
   md-toast {
     bottom: auto;
@@ -33,9 +39,8 @@
   <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
     <h1 class="busno">{{service}}</h1>
   </section>
-  <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-    <div class="uncle">
-    </div>
+  <section class="uncle" layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <img class="uncle-base" ng-src="{{uncleSrc}}"/>
   </section>
   <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
     <md-button class="bushere" ng-click="isBusHere()" class="md-raised md-primary">Is my bus here yet?</md-button>

@@ -166,7 +166,7 @@ app.controller('homeController', ['$scope', '$location', 'dataService', '$http',
       });
     }
 
-      setInterval(updateBusLocations, 5000);
+    setInterval(updateBusLocations, 5000);
 
 
 }]);

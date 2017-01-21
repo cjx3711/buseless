@@ -8,7 +8,7 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 100%;
+        height: 50%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -70,12 +70,17 @@
         });
 
         map.mapTypes.set('mystyle', new google.maps.StyledMapType(myStyle, { name: 'My Style' }));
-        marker = new google.maps.Marker({position: {lat: 1.3062, lng: 103.7732}, map: map, icon: 'bus.png'});
+        marker = new google.maps.Marker({position: {lat: 1.3062, lng: 103.7732}, map: map, icon: 'assets/bus.png'});
       }
 
       function moveMarker(lat, lng) {
         markerPos.lat += lat;
         markerPos.lng += lng;
+        marker.setPosition(markerPos);
+      }
+      function setMarker(lat, lng) {
+        markerPos.lat = lat;
+        markerPos.lng = lng;
         marker.setPosition(markerPos);
       }
     </script>

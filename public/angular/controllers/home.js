@@ -55,7 +55,8 @@ app.controller('homeController', ['$scope', '$location', 'dataService', '$http',
         },
         center: {lat: 1.3065978, lng: 103.7733377}, //{lat: 1.36, lng: 103.82},
         zoom: 14,
-        mapTypeId: 'mystyle'
+        mapTypeId: 'mystyle',
+        disableDefaultUI: true
       });
 
       map.mapTypes.set('mystyle', new google.maps.StyledMapType(myStyle, { name: 'My Style' }));

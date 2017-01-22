@@ -302,7 +302,7 @@ footer a.nav-bits:hover {
 }
 
 .busstop-label-home {
-    margin-bottom:-20px;
+    margin-bottom:-16px;
 }
 .busstop-label-home .stopname {
     font-family: 'Open Sans Condensed', sans-serif;
@@ -323,6 +323,8 @@ footer a.nav-bits:hover {
 
 .busno-container {
   width: 180px;
+  flex-basis: 180px;
+  min-width: 180px;
 }
 .small-busno {
   display: inline-block;
